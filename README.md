@@ -11,12 +11,28 @@ Create temperature graph for various geographical locations.
 ## How to run
 Normally this runs in a cron job, something like:
 
-    ~~~~
 	#min     hour         d1-31    m1-12   wday         script
      12       *            *        *       *           cd /home/user/proj/TempGraph && ./temp_graph.py
-    ~~~~
+    
 
 There's a plan to make it run coninuously in the background (as a daemon) and fetch the data and generate graphs periodically.
 
+## Dependencies
+For its normal operation the script depends on some nonstandard Python libraries and applications:
+
+* [`requests`](https://requests.readthedocs.io/en/master/) library is used to fetch data from the web
+* `gnuplot` application is used to generate graphical diagrams
+* [`Gnulib`](http://gnuplot-py.sourceforge.net/) library is used as a wrapper for `gnuplot` application
+
+On Debian and derived distributions these could be installed with:
+
+    $ sudo apt install gnuplot5
+    $ sudo apt install python-gnuplot
+    $ sudo apt install python-requests
+
+
+## Publishing graphs
+Configuration option `publish_graphs` controls whether the graphs are published to a web page or not. The generated graphs could still be viewed locally by opening `temperatures.html` file (in the `Graphs` directory) in the web browser.
+
 ## Other APIs
-It started by processing weather data available from the **BOM** site but other APIs (OpenWeather) that support locations around the world are being considered.
+It all started with using weather data available from the **BOM** site but other APIs (OpenWeather) that support locations around the world are being investigated.
