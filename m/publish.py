@@ -39,17 +39,19 @@ class PublishGraphsFtp( PublishGraphs ):
 
     def copy_files( self, file_list ):
         # FIXME - switch to keyring-daemon for credentials
-        #       - catch the connection exceptions
-        session = ftplib.FTP( self.remote_host, self.username, self.password )
-        for graph_file in file_list:
-            dest_fname = os.path.basename( graph_file )
-            with open( graph_file, 'rb' ) as fileobj:
-                print '  ** About to FTP upload %s file -> %s' % (graph_file, dest_fname)
-                #print 'cwd', session.pwd()                          # debug
-                session.storbinary( 'STOR ' + dest_fname, fileobj ) # send the file
-                fileobj.close()                                     # close the file
-                
-        session.quit()  # close the FTP session
+        try:
+            session = ftplib.FTP( self.remote_host, self.username, self.password )
+            for graph_file in file_list:
+                dest_fname = os.path.basename( graph_file )
+                with open( graph_file, 'rb' ) as fileobj:
+                    print '  ** About to FTP upload %s file -> %s' % (graph_file, dest_fname)
+                    #print 'cwd', session.pwd()                          # debug
+                    session.storbinary( 'STOR ' + dest_fname, fileobj ) # send the file
+                    fileobj.close()                                     # close the file
+
+            session.quit()  # close the FTP session
+        except Exception, e:
+            print '\nERROR: PublishGraphsFtp; %s\n' % e
 
 
 def publish_graph_files( graph_names, credentials ):
