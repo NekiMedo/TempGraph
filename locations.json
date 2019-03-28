@@ -1,0 +1,76 @@
+{
+    "data_dir"  : "Data",
+    "graph_dir" : "Graphs",
+    "FIXME":  "DUMP web_dir FIELD",
+
+    "locations": [
+        {
+            "url"   : "http://www.bom.gov.au/fwo/IDN60901/IDN60901.94767.json", 
+            "data"  : "Data/syd_airport.txt",
+            "title" : "Sydney airport recent temperatures",
+            "web_dir" : "directory_name"
+        },
+
+        { "url"   : "http://www.bom.gov.au/fwo/IDN60901/IDN60901.95765.json", 
+          "data"  : "Data/homebush.txt",
+          "title" : "Homebush recent temperatures",
+          "web_dir" : "same"
+        },
+
+        { "url"   : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.95728.json",
+          "data"  : "Data/coona_temp.txt",
+          "title" : "Coonabarabran temperature the last few days",
+          "web_dir" : "not_used"
+        },
+
+        { "url"   : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.94915.json",
+          "data"  : "Data/perisher_temp.txt",
+          "title" : "Perisher Valley temperature the last few days",
+          "web_dir" : "def"
+        },
+
+        { "url"   : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.95909.json",
+          "data"  : "Data/thredbo_temp.txt",
+          "title" : "Thredbo top station temperature the last few days",
+          "web_dir" : "abc"
+        },
+        
+        { "url"   : "http://www.bom.gov.au/fwo/IDT60801/IDT60801.94959.json",
+          "data"  : "Data/butlers_gorge.txt",
+          "title" : "TAS: Butlers Gorge",
+          "web_dir" : "abc"
+        },
+
+        { "url"   : "http://www.bom.gov.au/fwo/IDT60801/IDT60801.95959.json",
+          "data"  : "Data/liawenee.txt",
+          "title" : "TAS: Liawenee",
+          "web_dir" : "abc"
+        },
+
+        { "url"   : "http://www.bom.gov.au/fwo/IDT60801/IDT60801.95981.json",
+          "data"  : "Data/st_helens.txt",
+          "title" : "St Helens temperature the last few days",
+          "web_dir" : "abc"
+        },
+
+        { "url"     : "http://www.bom.gov.au/fwo/IDW60801/IDW60801.94600.json",
+          "data"    : "Data/cape_naturaliste.txt",
+          "title"   : "WA Cape naturaliste temperature the last few days",
+          "web_dir" : "abc"
+        },
+
+        { "url"     : "http://www.bom.gov.au/fwo/IDW60801/IDW60801.94601.json",
+          "data"    : "Data/cape_leeuwin.txt",
+          "title"   : "WA Cape Leeuwin temperature the last few days",
+          "web_dir" : "abc"
+        },
+		
+        {
+            "url"   : "http://www.bom.gov.au/fwo/IDN60901/IDN60901.94767.json", 
+            "data"  : "Data/Cortina.txt",
+            "title" : "Cortina recent temperatures",
+            "skip_fetch":  true,
+            "web_dir" : "directory_name"
+        }
+    ]
+}
