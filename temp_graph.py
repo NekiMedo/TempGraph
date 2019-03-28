@@ -25,7 +25,7 @@ Namespace = argparse.Namespace  # alias
 
 
 def append_new_data( new_data, fname ):
-    '''Append new data points (scraped from BOM web page) to the given file.
+    '''Append new data points (retrieved from the BOM web page) to the given file.
     new_data - a list of tuples (DATETIME, TEPMERATURE, APPARENT_TEMPERATURE)
     Note: apparent_temperature may not be available for all data sources
     '''
@@ -67,12 +67,15 @@ def process_cmd_line_args():
 
 
 def graph_file_path( dir_name, datafile_name ):
-    'Compose the full graph file path, given the directory name and data file name'
+    '''Compose the full graph file path, given the directory name and the
+    temperature data file name'''
     return os.path.join( dir_name,
                          os.path.basename( os.path.splitext( datafile_name )[ 0 ] )
                          + '.png' )
 
-# need (username, pwd) to publish graphs on the web server etc
+# Need (username, pwd) to publish graphs on the web server etc.
+# Whether the graphs are published is controlled by 'publish_graphs'
+# configuration file flag (defaults to 'false').
 # FIXME replace with gnome-keyring-daemon to store credentials 
 credentials = ('usename', 'secret_password' )
 

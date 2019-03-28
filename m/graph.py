@@ -4,6 +4,7 @@
 
 import datetime
 import os
+import sys
 # NOTE nonstandard library (python-gnuplot package under Debian)
 import Gnuplot
 
@@ -19,6 +20,9 @@ class TempDataFile( object ):
         '''
         fname -- the name of the file containing data
         '''
+        if not os.path.exists( fname ):
+            print '\nERROR: cannot find %s file\n' % fname
+            sys.exit( 1 )
         self.fname = fname
         self.last_time = self.__find_last_timestamp()
 
@@ -45,9 +49,6 @@ class TempDataFile( object ):
                     out_file.write( line )
         out_file.flush()
         out_file.close()
-
-        #if type( out_fname ) is not types.StringType:  # FIXME rm: name needs to be a string
-        #    print out_fname, 'is not a string'
         return out_fname
 
     def __find_last_timestamp( self ):
@@ -70,34 +71,30 @@ class TempDataFile( object ):
                 last_timestamp = dt
         return last_timestamp
 
-
-# FIXME make this a TempDataFile member    
-def get_min_max_temperature( fname ):
-    '''Return the minimum and maximum temperatures logged in fname file.
-    The 2nd column is air temperature.
-    The 3rd column is apparent temperature (adjusted for wind factor)
-    '''
-    # FIXME check the file exists
-    min_temp = 100
-    max_temp = -100
-    with open( fname, 'r' ) as data_file:
-        for line in data_file:
-            token = line.split()
-            if len( token ) > 2:
-                air_temp = int( float( token[ 1 ].strip() ) + 0.5 )
-                apparent_temp = int( float( token[ 2 ].strip() ) + 0.5 )
-                for t in (air_temp, apparent_temp):
-                    if min_temp > t:
-                        min_temp = t
-                    if max_temp < t:
-                        max_temp = t
-    return (min_temp, max_temp)
-
+    def get_min_max_temperature( self ):
+        '''Return the minimum and maximum temperatures logged.
+        The 2nd column is air temperature.
+        The 3rd column is apparent temperature (adjusted for wind factor)
+        '''
+        min_temp = 100
+        max_temp = -100
+        with open( self.fname, 'r' ) as data_file:
+            for line in data_file:
+                token = line.split()
+                if len( token ) > 2:
+                    air_temp = int( float( token[ 1 ].strip() ) + 0.5 )
+                    apparent_temp = int( float( token[ 2 ].strip() ) + 0.5 )
+                    for t in (air_temp, apparent_temp):
+                        if min_temp > t:
+                            min_temp = t
+                        if max_temp < t:
+                            max_temp = t
+        return (min_temp, max_temp)
 
 
 def create_graph( graph_title, data_file, graph_file ):
-    '''Create PNG graph out of passed data using Gnuplot Python wrapper around
-    bare gnuplot
+    '''Create a PNG graph out of passed data using Gnuplot Python wrapper around
+    bare gnuplot utility
     '''
     if not os.path.exists( data_file ):
         print '\nWARNING: cannot find %s data file; skipping it\n' % data_file
@@ -106,7 +103,7 @@ def create_graph( graph_title, data_file, graph_file ):
     data = TempDataFile( data_file )
     seven_days_data = data.extract_last_n_days( 7 )
 
-    min_temp, max_temp = get_min_max_temperature( seven_days_data )
+    min_temp, max_temp = TempDataFile( seven_days_data ).get_min_max_temperature()
     floor = int( float( min_temp ) / 10 ) * 10
     ceil  = ( 1 + int( max_temp / 10 )) * 10
     if min_temp < 0:
@@ -127,7 +124,6 @@ def create_graph( graph_title, data_file, graph_file ):
     g( 'set linetype 1 linecolor rgb "#C00000"' )
     g( 'set linetype 2 linecolor rgb "0x0000C0"' )
     g( 'set output "%s"' % graph_file )
-    #f = Gnuplot.File( data_file, using='1:2 t "air temp.", "" u 1:3 t "apparent temp."' )
     f = Gnuplot.File( seven_days_data, using='1:2 t "air temp.", "" u 1:3 t "apparent temp."' )
     g.plot( f )
     return True
