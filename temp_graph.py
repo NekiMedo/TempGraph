@@ -94,7 +94,10 @@ def main():
         if create_graph( loc.title, loc.data, graph_path ) and  loc.web_dir is not None:
             graphs_to_upload.append( graph_path )
 
-    publish_graph_files( graphs_to_upload, credentials )
+    if cfg.publish_graphs:
+        # NOTE the 'credentials'' above will need to be correct
+        publish_graph_files( graphs_to_upload, credentials )
+
 
 if __name__ == '__main__':
     main()

@@ -1,6 +1,7 @@
 {
     "data_dir"  : "Data",
     "graph_dir" : "Graphs",
+	"publish_graphs" : false,
     "FIXME":  "DUMP web_dir FIELD",
 
     "locations": [
