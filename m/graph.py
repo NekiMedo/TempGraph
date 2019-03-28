@@ -98,10 +98,9 @@ def get_min_max_temperature( fname ):
 def create_graph( graph_title, data_file, graph_file ):
     '''Create PNG graph out of passed data using Gnuplot Python wrapper around
     bare gnuplot
-    FIXME drop the 3rd argument (graph name) - derive it from data file name
     '''
     if not os.path.exists( data_file ):
-        print '\nWARNING: cannot find %s file; skipping it\n' % data_file
+        print '\nWARNING: cannot find %s data file; skipping it\n' % data_file
         return False 
     
     data = TempDataFile( data_file )
@@ -109,10 +108,9 @@ def create_graph( graph_title, data_file, graph_file ):
 
     min_temp, max_temp = get_min_max_temperature( seven_days_data )
     floor = int( float( min_temp ) / 10 ) * 10
-    ceil = max_temp
+    ceil  = ( 1 + int( max_temp / 10 )) * 10
     if min_temp < 0:
         floor -= 10
-        ceil  = ( 1 + int( max_temp / 10 )) * 10
 
     g = Gnuplot.Gnuplot( debug=0 )  # set debug=1 for verbose run
     g.title( graph_title )
