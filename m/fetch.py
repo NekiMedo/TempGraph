@@ -1,5 +1,7 @@
 '''Fetch the latest temperature readings from BOM web site.
 TODO add support for other APIs (OpenWeater etc)
+
+All rights reserved;  see LICENSE file
 '''
 import json
 

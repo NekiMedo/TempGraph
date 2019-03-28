@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# All rights reserved;  see LICENSE file
 import argparse
 import os
 import sys

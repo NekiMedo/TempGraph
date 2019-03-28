@@ -1,5 +1,6 @@
 '''Use gnuplot to generate *.png graphs from temperature readings (ASCII text)
 '''
+# All rights reserved;  see LICENSE file
 
 import datetime
 import os

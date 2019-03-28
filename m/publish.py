@@ -1,5 +1,8 @@
 '''Publish graphs to a web server directory (or equivalent) somewhere across the network.
 '''
+
+# All rights reserved;  see LICENSE file
+
 import ftplib
 import os
 import subprocess
