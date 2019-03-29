@@ -50,7 +50,7 @@ class TempDataFile( object ):
         Ignore minutes and secods, return datetime with hours
         '''
         if not os.path.exists( self.fname ):
-            return 0
+            return datetime.datetime( 2000, 1, 1 )
         last_timestamp = 0
         with open( self.fname, 'r' ) as f:
             for line in f:

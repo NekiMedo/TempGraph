@@ -1,0 +1,8 @@
+*.png
+*.txt
+*.txt.7
+*.pyc
+.gitignore
+OtherJunk
+DSC*
+city.list.json
