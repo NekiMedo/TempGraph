@@ -1,10 +1,10 @@
 # TempGraph
-Create temperature graph for various geographical locations.
+Create temperature graphs for various geographical locations.
 
 ## Summary
 
 * fetch weather data (JSON file) from the Bureau of Meteorology (BOM) [web site](http://www.bom.gov.au/nsw/observations/nswall.shtml)
-* extract temperature readings and append it to the data file; there's a separate data file for each location; locations are specified in the configuration file (locations.json by default)
+* extract temperature readings and append it to the data file; there's a separate data file for each location; locations are specified in the configuration file (`locations.json` by default)
 * create temperature graph for the last few days (at most 7 days)
 * if configured, push these graphs to the web server so it's available over the web; alternatively the graphs could be viewed locally in the `Graphs` directory by opening the `temperatures.html` file in the browser
 

@@ -2,9 +2,8 @@
 '''
 # All rights reserved;  see LICENSE file
 
-import datetime
 import os
-import sys
+from temp_data import TempDataFile
 # NOTE nonstandard library (python-gnuplot package under Debian)
 import Gnuplot
 
@@ -12,104 +11,22 @@ import Gnuplot
 #      On Debian: sudo apt install gnuplot5
 #      FIXME runtime check: gnuplot is installed?
 
-class TempDataFile( object ):
-    '''Facilitate manipulation of temperature data file;
-    e.g. extract only the last N days of data points from the data file.
-    '''
-    def __init__( self, fname ):
-        '''
-        fname -- the name of the file containing data
-        '''
-        if not os.path.exists( fname ):
-            print '\nERROR: cannot find %s file\n' % fname
-            sys.exit( 1 )
-        self.fname = fname
-        self.last_time = self.__find_last_timestamp()
 
-    def extract_last_n_days( self, n_days ):
-        '''If the file contains more data than we are interested in
-        extract only the specified period into a separate file.
-        Returns the extracted data file name.
-        '''
-        out_fname = str( self.fname + '.' + str( n_days ) )
-        out_file = open( out_fname, 'w' )
-        with open( self.fname, 'r' ) as f:
-            for line in f:
-                token = line.split()
-                if len( token ) < 3:
-                    continue
-                timestamp =  token[ 0 ].strip()
-                dt = datetime.datetime( int( timestamp [ 0 : 4] ),  # yyyy
-                                        int( timestamp [ 4 : 6] ),  # mm
-                                        int( timestamp [ 6 : 8] ),  # dd
-                                        int( timestamp [ 8 : 10]) ) # hh
-                days = (self.last_time - dt).days
-                #print timestamp, 'days', (last_timestamp - dt).days
-                if days < n_days:
-                    out_file.write( line )
-        out_file.flush()
-        out_file.close()
-        return out_fname
-
-    def __find_last_timestamp( self ):
-        '''Scan the whole file and find the last timestamp (1st column).
-        Assumes the file is sorted by time/date i.e. the last line is
-        the most recent time => FIXME optimise: skip all lines until the last
-        Ignore minutes and secods, return datetime with hours
-        '''
-        last_timestamp = 0
-        with open( self.fname, 'r' ) as f:
-            for line in f:
-                token = line.split()
-                if len( token ) < 3:
-                    continue
-                timestamp =  token[ 0 ].strip()
-                dt = datetime.datetime( int( timestamp [ 0 : 4] ),  # yyyy
-                                        int( timestamp [ 4 : 6] ),  # mm
-                                        int( timestamp [ 6 : 8] ),  # dd
-                                        int( timestamp [ 8 : 10]) ) # hh
-                last_timestamp = dt
-        return last_timestamp
-
-    def get_min_max_temperature( self ):
-        '''Return the minimum and maximum temperatures logged.
-        The 2nd column is air temperature.
-        The 3rd column is apparent temperature (adjusted for wind factor)
-        '''
-        min_temp = 100
-        max_temp = -100
-        with open( self.fname, 'r' ) as data_file:
-            for line in data_file:
-                token = line.split()
-                if len( token ) > 2:
-                    air_temp = int( float( token[ 1 ].strip() ) + 0.5 )
-                    apparent_temp = int( float( token[ 2 ].strip() ) + 0.5 )
-                    for t in (air_temp, apparent_temp):
-                        if min_temp > t:
-                            min_temp = t
-                        if max_temp < t:
-                            max_temp = t
-        return (min_temp, max_temp)
-
-
-def create_graph( graph_title, data_file, graph_file ):
+def create_graph( graph_title, temp_data_file, graph_file ):
     '''Create a PNG graph out of passed data using Gnuplot Python wrapper around
     bare gnuplot utility
     '''
-    if not os.path.exists( data_file ):
-        print '\nWARNING: cannot find %s data file; skipping it\n' % data_file
-        return False 
-    
-    data = TempDataFile( data_file )
-    seven_days_data = data.extract_last_n_days( 7 )
-
+    if not os.path.exists( temp_data_file.fname ):
+        print '\nWARNING no data in %s file yet\n' % temp_data_file.fname
+        return False
+    seven_days_data = temp_data_file.extract_last_n_days( 7 )
     min_temp, max_temp = TempDataFile( seven_days_data ).get_min_max_temperature()
     floor = int( float( min_temp ) / 10 ) * 10
     ceil  = ( 1 + int( max_temp / 10 )) * 10
     if min_temp < 0:
         floor -= 10
 
-    g = Gnuplot.Gnuplot( debug=0 )  # set debug=1 for verbose run
+    g = Gnuplot.Gnuplot( debug=0 )  # set debug=1 for a verbose run
     g.title( graph_title )
     g( 'set xdata time' )
     g( 'set style data lines' )
