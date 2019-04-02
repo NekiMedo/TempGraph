@@ -33,6 +33,7 @@ On Debian and derived distributions these could be installed with:
 
 ## Publishing graphs
 Configuration option `publish_graphs` controls whether the graphs are published to a web page or not. The generated graphs could still be viewed locally by opening `temperatures.html` file (in the `Graphs` directory) in the web browser.
+[Sample output](http://home.exetel.com.au/bb_stuff/temperatures.html)
 
 ## Other APIs
 It all started with using weather data available from the **BOM** site but other APIs (OpenWeather) that support locations around the world are being investigated.
