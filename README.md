@@ -21,7 +21,7 @@ There's a plan to make it run coninuously in the background (as a daemon) and fe
 For its normal operation the script depends on some nonstandard Python libraries and applications:
 
 * [`requests`](https://requests.readthedocs.io/en/master/) library is used to fetch data from the web
-* `gnuplot` application is used to generate graphical diagrams
+* `gnuplot` application is used to generate graphical diagrams (TODO look at the pure Python solution e.g. https://plot.ly/)
 * [`Gnulib`](http://gnuplot-py.sourceforge.net/) library is used as a wrapper for `gnuplot` application
 
 On Debian and derived distributions these could be installed with:
@@ -33,6 +33,7 @@ On Debian and derived distributions these could be installed with:
 
 ## Publishing graphs
 Configuration option `publish_graphs` controls whether the graphs are published to a web page or not. The generated graphs could still be viewed locally by opening `temperatures.html` file (in the `Graphs` directory) in the web browser.
+
 [Sample output](http://home.exetel.com.au/bb_stuff/temperatures.html)
 
 ## Other APIs
