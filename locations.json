@@ -1,7 +1,7 @@
 {
     "data_dir"  : "Data",
     "graph_dir" : "Graphs",
-    "publish_graphs" : false,
+    "publish_graphs" : true,
     "FIXME":  "DUMP web_dir FIELD",
 
     "locations": [
@@ -72,7 +72,7 @@
             "NOTE"  : "Uses different API: OpenWeather - work in progress",
             "title" : "Cortina recent temperatures",
             "skip_fetch":  true,
-            "web_dir" : "directory_name"
+            "web_dir" : "directory_name_2"
         }
     ]
 }
