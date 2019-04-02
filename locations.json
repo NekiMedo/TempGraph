@@ -64,15 +64,6 @@
           "data"    : "Data/cape_leeuwin.txt",
           "title"   : "WA Cape Leeuwin temperature the last few days",
           "web_dir" : "abc"
-        },
-		
-        {
-            "url"   : "http://www.bom.gov.au/fwo/IDN60901/IDN60901.94767.json", 
-            "data"  : "Data/Cortina.txt",
-            "NOTE"  : "Uses different API: OpenWeather - work in progress",
-            "title" : "Cortina recent temperatures",
-            "skip_fetch":  true,
-            "web_dir" : "directory_name"
         }
     ]
 }

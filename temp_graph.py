@@ -66,10 +66,7 @@ def main():
         graph_path = graph_file_path( cfg.graph_dir, loc.data )
         print '\n', loc.url, '\n  graph_path: ', graph_path
         temp_data = TempDataFile( loc.data )
-        if hasattr( loc, 'skip_fetch' ) and loc.skip_fetch:
-            print 'INFO: SKIPPING data fetch step'  # need adapter for the other API
-        else:
-            temp_data.append_new_data( fetch_latest_temp_data( loc.url ) )
+        temp_data.append_new_data( fetch_latest_temp_data( loc.url ) )
         if create_graph( loc.title, temp_data, graph_path ) and  loc.web_dir is not None:
             graphs_to_upload.append( graph_path )
 
