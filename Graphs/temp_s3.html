@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> Temperatures </title>
+  <meta charset="utf-8">
+</head>
+<body>
+
+<select name="which_graph" id="which_graph" onchange="setImage( this );">
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/syd_airport.png">
+          Syd. airport  </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/homebush.png">
+          Homebush </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/coona_temp.png">
+          Coonabarrabran </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/thredbo_temp.png">
+	      Thredbo        </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/perisher_temp.png">
+	      Perisher       </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/liawenee.png">
+          TAS : Liawenee </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/butlers_gorge.png">
+	      TAS : Butlers Gorge    </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/cape_naturaliste.png">
+	      WA : Cape Naturaliste  </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/cape_leeuwin.png">
+	      WA : Cape Leeuwin      </option>
+  <option value="https://s3-ap-southeast-2.amazonaws.com/mala-sova-pub/TemperatureGraphs/Cortina.png">
+	      IT : Cortina d'Ampezzo </option>
+</select><br />
+
+<img src="syd_airport.png" name="image-swap" />
+
+
+<script>
+  function setImage( select )
+  {
+    var image = document.getElementsByName( "image-swap" )[0];
+    image.src = select.options[ select.selectedIndex ].value;
+  }
+</script>
+
+
+</body>
+</html>

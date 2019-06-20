@@ -71,8 +71,9 @@ def main():
             graphs_to_upload.append( graph_path )
 
     if cfg.publish_graphs:
+        print '\nUsing: ', cfg.upload_method, '\n'
         # NOTE the 'credentials'' above will need to be correct
-        publish_graph_files( graphs_to_upload, credentials )
+        publish_graph_files( cfg.upload_method, graphs_to_upload, credentials )
 
 
 if __name__ == '__main__':

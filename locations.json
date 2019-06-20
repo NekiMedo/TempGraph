@@ -1,7 +1,9 @@
 {
     "data_dir"  : "Data",
     "graph_dir" : "Graphs",
-    "publish_graphs" : false,
+    "publish_graphs" : true,
+	"upload_method"  : "S3",
+	"COMMENT_methods": "S3 FTP SCP",
     "FIXME":  "DUMP web_dir FIELD",
 
     "locations": [
