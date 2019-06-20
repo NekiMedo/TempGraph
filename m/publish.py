@@ -33,8 +33,8 @@ class PublishGraphsSsh( PublishGraphs ):
             subprocess.Popen( ['scp', f, self.remote_host + ':' + self.remote_dir ] ).wait()
 
             
-class PublishGraphsAwsS3( PublishGraphs ):  # FIXME work in progress
-    "Copy files to Amazon S3 bucket"
+class PublishGraphsAwsS3( PublishGraphs ):
+    "Copy files to the specified Amazon S3 bucket"
     def __init__( self, bucket, remote_dir, credentials ):
         super( PublishGraphsAwsS3, self ).__init__(  bucket, remote_dir, credentials )
 
@@ -42,15 +42,15 @@ class PublishGraphsAwsS3( PublishGraphs ):  # FIXME work in progress
         '''
         file_list - a list of files to upload; the full path is specified
         '''
-        #print 'PublishGraphsAwsS3 copying files', file_list, 'to host', self.remote_host, 'dir', self.remote_dir
         s3 = boto3.resource( 's3' )
+        bucket = s3.Bucket( self.remote_host )
         for f in file_list:
             dest_fname = os.path.basename( f )
             dest_path  = os.path.join( self.remote_dir, dest_fname )
             try:
                 with open( f, 'rb') as fdata:
                     print ' ', f, '=>', dest_path
-                    s3.Bucket( self.remote_host ).put_object( Key=dest_path, Body=fdata )
+                    bucket.put_object( Key=dest_path, Body=fdata )
             except Exception, e:
                 print '\nOOPS [S3]:', e
 
