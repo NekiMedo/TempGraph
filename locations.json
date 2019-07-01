@@ -6,6 +6,24 @@
     "COMMENT_methods": "S3 FTP SCP",
     "FIXME":  "DUMP web_dir FIELD",
 
+	"method_S3" :
+	{
+	    "remote_host" : "mala-sova-pub",
+	    "remote_dir"  : "TemperatureGraphs"
+	},
+	"method_FTP" :
+	{
+	    "remote_host" : "home.exetel.com.au",
+	    "remote_dir"  : ".",
+		"korisnik"    : [ "fw_bb_stuff", "javka" ]
+	},
+	"method_SCP" :
+	{
+	    "remote_host" : "deb-xeon",
+	    "remote_dir"  : "/var/www/html/TempGraph/",
+		"korisnik"    : [ "ime", "javka" ]
+	},
+	
     "locations": [
         {
             "url"   : "http://www.bom.gov.au/fwo/IDN60901/IDN60901.94767.json", 
