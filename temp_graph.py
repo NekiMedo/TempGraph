@@ -52,17 +52,27 @@ def graph_file_path( dir_name, datafile_name ):
 # Need (username, pwd) to publish graphs on the web server etc.
 # Whether the graphs are published is controlled by 'publish_graphs'
 # configuration file flag (defaults to 'false').
-# FIXME replace with gnome-keyring-daemon to store credentials 
+# FIXME replace with gnome-keyring-daemon to store credentials
 credentials = ('usename', 'secret_password' )
 
 def main():
     args = process_cmd_line_args()
     print 'INFO using config:', args.config, ', loop', args.loop
     cfg = LocationsConfig( args.config ).get()
+    if cfg.upload_method == "S3":
+        print cfg.method_S3
+    elif cfg.upload_method == FTP:
+        print cfg.method_FTP
+    elif cfg.upload_method == SCP:
+        print cfg.method_SCP
+    else:
+        print "oops"
+        sys.exit( 1 )
+    sys.exit( 0 )
 
     graphs_to_upload = []
     for location in cfg.locations:
-        loc = Namespace( **location ) 
+        loc = Namespace( **location )
         graph_path = graph_file_path( cfg.graph_dir, loc.data )
         print '\n', loc.url, '\n  graph_path: ', graph_path
         temp_data = TempDataFile( loc.data )
