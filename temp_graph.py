@@ -68,7 +68,7 @@ def main():
     else:
         print "oops"
         sys.exit( 1 )
-    sys.exit( 0 )
+    #sys.exit( 0 )
 
     graphs_to_upload = []
     for location in cfg.locations:
