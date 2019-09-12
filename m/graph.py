@@ -36,7 +36,7 @@ def create_graph( graph_title, temp_data_file, graph_file ):
     g( 'set yrange [ "%d" : "%d" ]' % (floor, ceil) )  # dynamically adjust min/max temperature scale
     g( 'set grid' )
     g( 'set bmargin 6' )
-    g( 'set xtics rotate by 90 offset 0, -4.8' )
+    g( 'set xtics rotate by 90 offset 0, -5.4' )    # 4.8 => 5.4 (label offset)
     g( 'set xtics format "%d-%b %H:%M" time' )      # date/time format on the GRAPH
     g( 'set linetype 1 linecolor rgb "#C00000"' )
     g( 'set linetype 2 linecolor rgb "0x0000C0"' )
