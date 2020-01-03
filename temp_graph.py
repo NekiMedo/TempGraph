@@ -61,9 +61,9 @@ def main():
     cfg = LocationsConfig( args.config ).get()
     if cfg.upload_method == "S3":
         print cfg.method_S3
-    elif cfg.upload_method == FTP:
+    elif cfg.upload_method == "FTP":
         print cfg.method_FTP
-    elif cfg.upload_method == SCP:
+    elif cfg.upload_method == "SCP":
         print cfg.method_SCP
     else:
         print "oops"
