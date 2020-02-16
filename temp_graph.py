@@ -34,6 +34,7 @@ def process_cmd_line_args():
     parser.add_argument( '-l', '--loop',    help='run in a loop instead of a single shot', action='store_true' )
     parser.add_argument( '-c', '--config',  help='use the specified config (JSON) file',
                          default='locations.json', action='store' )
+    # FIXME add -n option to skip uploading graphs
     args = parser.parse_args()
 
     if args.config  and  not os.path.exists( args.config ):
