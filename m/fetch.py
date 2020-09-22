@@ -22,6 +22,8 @@ def fetch_latest_temp_data( bom_url ):
         # the received data is: 'the latest temperature reading first'
         # we want it in reverse order:
         temperature_readings.reverse()
+        #for r in temperature_readings: # just debugging
+        #    print r
     except Exception, e:
         print '\nERROR: fetch_latest_temp_data;', e
     return temperature_readings

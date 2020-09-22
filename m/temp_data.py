@@ -105,6 +105,9 @@ class TempDataFile( object ):
             for timestamp, air_temp, apparent_temp in new_data:
                 if timestamp <= old_timestamp:
                     continue
+                # skip over missing data
+                if air_temp is None:
+                    continue
                 if apparent_temp is None:  # sometimes BOM don't supply 'apparent temperature'
                     apparent_temp = air_temp
                 line = "%d %4.1f %4.1f\n" % (timestamp, air_temp, apparent_temp)
