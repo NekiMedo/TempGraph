@@ -6,24 +6,24 @@
     "COMMENT_methods": "S3 FTP SCP",
     "FIXME":  "DUMP web_dir FIELD",
 
-	"method_S3" :
-	{
-	    "remote_host" : "mala-sova-pub",
-	    "remote_dir"  : "TemperatureGraphs"
-	},
-	"method_FTP" :
-	{
-	    "remote_host" : "home.exetel.com.au",
-	    "remote_dir"  : ".",
-		"korisnik"    : [ "fw_bb_stuff", "javka" ]
-	},
-	"method_SCP" :
-	{
-	    "remote_host" : "deb-xeon",
-	    "remote_dir"  : "/var/www/html/TempGraph/",
-		"korisnik"    : [ "ime", "javka" ]
-	},
-	
+    "method_S3" :
+    {
+        "remote_host" : "mala-sova-pub",
+        "remote_dir"  : "TemperatureGraphs"
+    },
+    "method_FTP" :
+    {
+        "remote_host" : "home.exetel.com.au",
+        "remote_dir"  : ".",
+        "korisnik"    : [ "fw_bb_stuff", "javka" ]
+    },
+    "method_SCP" :
+    {
+        "remote_host" : "deb-xeon",
+        "remote_dir"  : "/var/www/html/TempGraph/",
+        "korisnik"    : [ "ime", "javka" ]
+    },
+    
     "locations": [
         {
             "url"   : "http://www.bom.gov.au/fwo/IDN60901/IDN60901.94767.json", 
@@ -85,11 +85,16 @@
           "title"   : "WA Cape Leeuwin temperature the last few days",
           "web_dir" : "abc"
         },
-		
+        {
+          "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.95754.json",
+          "data"    : "Data/merriwa.txt",
+          "title"   : "Merriwa (Coolah) temperature the last few days",
+          "web_dir" : "abc"
+        },
         { "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.94743.json",
           "data"    : "Data/mt_boyce.txt",
           "title"   : "Mt Boyce (Blackheath) temperature the last few days",
           "web_dir" : "abc"
-        }		
+        }       
     ]
 }
