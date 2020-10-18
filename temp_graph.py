@@ -54,7 +54,7 @@ def graph_file_path( dir_name, datafile_name ):
 # Whether the graphs are published is controlled by 'publish_graphs'
 # configuration file flag (defaults to 'false').
 # FIXME replace with gnome-keyring-daemon to store credentials
-credentials = ('usename', 'secret_password' )
+credentials = ('username', 'secret_password' )
 
 def main():
     args = process_cmd_line_args()
@@ -74,6 +74,9 @@ def main():
     graphs_to_upload = []
     for location in cfg.locations:
         loc = Namespace( **location )
+        if hasattr( loc, 'skip') and loc.skip:
+            print '  ** SKIPPING over', os.path.basename( loc.data )
+            continue
         graph_path = graph_file_path( cfg.graph_dir, loc.data )
         print '\n', loc.url, '\n  graph_path: ', graph_path
         temp_data = TempDataFile( loc.data )
