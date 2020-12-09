@@ -54,7 +54,7 @@ def graph_file_path( dir_name, datafile_name ):
 # Whether the graphs are published is controlled by 'publish_graphs'
 # configuration file flag (defaults to 'false').
 # FIXME replace with gnome-keyring-daemon to store credentials
-credentials = ('username', 'secret_password' )
+#credentials = ('username', 'secret_password' )
 
 def main():
     args = process_cmd_line_args()
