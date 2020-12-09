@@ -65,9 +65,10 @@ class PublishGraphsFtp( PublishGraphs ):
         try:
             session = ftplib.FTP( self.remote_host, self.username, self.password )
             for graph_file in file_list:
-                #dest_fname = os.path.basename( graph_file )  # FIXME original
-                # 9-DEC-2020: Exetel misconfigured the FTP server so now needs 'public_html' prefix:
-                dest_fname = 'public_html/' + os.path.basename( graph_file )
+                #  9-DEC-2020: Exetel misconfigured the FTP server so now needs 'public_html' prefix:
+                # 10-DEC-2020 - they reverted the configuration after i've notified them
+                #dest_fname = 'public_html/' + os.path.basename( graph_file )
+                dest_fname = os.path.basename( graph_file ) 
                 with open( graph_file, 'rb' ) as fileobj:
                     print '  ** About to FTP upload %s file -> %s' % (graph_file, dest_fname)
                     #print 'cwd', session.pwd()                          # debug
