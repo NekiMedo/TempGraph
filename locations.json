@@ -70,7 +70,7 @@
 
         { "url"   : "http://www.bom.gov.au/fwo/IDT60801/IDT60801.95981.json",
           "data"  : "Data/st_helens.txt",
-		  "skip"    : true,
+	  "skip"    : true,
           "title" : "St Helens temperature the last few days",
           "web_dir" : "abc"
         },
@@ -87,8 +87,8 @@
           "web_dir" : "abc"
         },
         {
-		  "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.95754.json",
-		  "skip"    : true,
+	  "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.95754.json",
+	  "skip"    : true,
           "data"    : "Data/merriwa.txt",
           "title"   : "Merriwa (Coolah) temperature the last few days",
           "web_dir" : "abc"
@@ -96,13 +96,13 @@
         {
           "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.99118.json",
           "data"    : "Data/barrington.txt",
-		  "skip"    : false,
+	  "skip"    : true,
           "title"   : "Barrington Tops temperature the last few days",
           "web_dir" : "abc"
         },
         { "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.94743.json",
           "data"    : "Data/mt_boyce.txt",
-		  "skip"    : false,
+	  "skip"    : false,
           "title"   : "Mt Boyce (Blackheath) temperature the last few days",
           "web_dir" : "abc"
         }       
