@@ -94,9 +94,9 @@
           "web_dir" : "abc"
         },
         {
-          "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.99118.json",
+          "url"     : "http://www.bom.gov.au/fwo/IDN60801/IDN60801.95758.json",
           "data"    : "Data/barrington.txt",
-	  "skip"    : true,
+	  "skip"    : false,
           "title"   : "Barrington Tops temperature the last few days",
           "web_dir" : "abc"
         },
