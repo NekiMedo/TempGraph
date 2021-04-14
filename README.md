@@ -36,5 +36,8 @@ Configuration option `publish_graphs` controls whether the graphs are published 
 
 [Sample output](http://home.exetel.com.au/bb_stuff/temperatures.html)
 
+## NOTE
+In April 2021 BOM started refusing GET requests unless usual browser headers were present. Seems to be fixed by simulating headers Firefox uses.
+
 ## Other APIs
 It all started with using weather data available from the **BOM** site but other APIs (OpenWeather) that support locations around the world are being investigated.
