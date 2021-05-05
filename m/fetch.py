@@ -11,6 +11,7 @@ import requests
 #
 # BOM started refusing GET requests without usual headers (15-Apr-2021)
 #     so here we are, simulating Firefox
+#     see https://docs.python-requests.org/en/latest/user/quickstart/#custom-headers
 browser_headers = \
     {
         'User-Agent':      'Mozilla/5.0 (X11; Linux x86_64; rv:87.0) Gecko/20100101 Firefox/87.0',
